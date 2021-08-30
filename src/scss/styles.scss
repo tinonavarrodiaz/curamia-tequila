@@ -1,0 +1,406 @@
+/*
+  This boilerplate is based in ITCSS and SMACSS
+*/
+
+// Variables de personalizacion de ed-grid
+
+// $breakpoints: (
+//   s: 0,
+//   m: 640px,
+//   lg: 1024px,
+//   xl: 1440px
+// );
+
+$prototype: true; // Activa los estilos de prototipado
+$dev: false; // Activa los estilos para debuggin
+$max-width: 1200px; // Ancho máximo de los contenedores ed-container y ed-grid
+$l-unit: 0.5rem; // Unidad básica de layout (para separaciones verticales, margin y padding)
+$gap: $l-unit * 4; // Separación entre columnas (2rem)
+$legacy: false; // Soporte para versiones antiguas
+$container: ed-container; // Clase para el contenedor (core flexbox)
+$item: ed-item; // Clase para los items (core flexbox)
+$max-grid-columns: 12; // Máximo número de columnas (core css grid)
+$fractions: 3 6; // Fracciones para crear columnas (core flexbox)
+
+@import '~aos/dist/aos.css';
+//EDGrid
+@import '~ed-grid/ed-grid';
+
+// Config
+@import 'config/functions';
+@import 'config/variables';
+@import 'config/mixins';
+
+// Hamburgers Menu
+// @import "~hamburgers/dist/hamburgers.min.css";
+
+// Theme (colors and fonts)
+@import 'theme/typography';
+// Base and elements (generic)
+@import 'base/base';
+
+// LAYOUT
+// Escribe solo los estilos de layout (division en regiones del viewport)
+@import 'layout/layout';
+
+// MODULOS (SMACSS) O COMPONENTES (ITCSS)
+// Son los elementos de UI de tu interfaz, como botones, tablas, menus, etc.
+// Crea los archivos adicionales que necesites (uno por componente)
+@import 'components/buttons';
+@import 'components/menus';
+@import 'components/loading';
+@import 'components/header';
+@import 'components/footer2';
+@import 'components/access';
+
+//@include from(l){
+//
+//}
+@import 'pages/home1';
+@import 'pages/about';
+@import 'pages/process';
+@import 'pages/cocktails';
+@import 'pages/contact';
+@import 'pages/tequilas';
+
+// Utilities (hacks)
+// Todos los hacks que hayas necesitado para solucionar conflictos
+// o resolver situaciones extremas. Se espera poder mejorarlos luego.
+@import 'hacks/hacks';
+
+body {
+}
+
+.container {
+  //width: calc(100vw - 13.55vw);
+  //margin-left: auto;
+  //margin-right: auto;
+  //display: flex;
+  //justify-content: flex-end;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+// .video-container {
+//   height: 0;
+//   overflow: hidden;
+//   padding-bottom: 56.25%;
+//   position: relative;
+
+//   >iframe,
+//   >video,
+//   >.video {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//   }
+// }
+.video-container {
+  background-color: #111;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+  }
+  .loading {
+    width: 2em;
+    height: 2em;
+  }
+}
+
+.parallax {
+  // transform: translateY(calc((var(--scroll) * var(--factor)) * 1px));
+  // transition: transform .2s;
+}
+.logo-c {
+  width: 60%;
+}
+@include to(l) {
+  .menu a {
+    --header-color: #8c8c8c !important;
+    color: #8c8c8c !important;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+  }
+  .main-nav.menu__close {
+    top: 1em !important;
+    right: 1em !important;
+  }
+  // .footer-Right {
+  //   transform: translateX(-.5em);
+  // }
+  // .footer-Right > a {
+  //   display: none;
+  // }
+}
+
+.modal-video {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  height: 100vh !important;
+  width: 100%;
+  background: rgba(#000, 0.75) !important;
+  padding: 0 1em !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal);
+  video {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+}
+.modal-close-button {
+  $size: 4em;
+  position: absolute;
+  height: $size;
+  width: $size;
+  top: 2em;
+  right: 2em;
+  // background-color:rebeccapurple;
+  &::after,
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    background-color: #fff;
+    transform: translateX(-50%) rotate(45deg);
+  }
+  &::after {
+    transform: translateX(-50%) rotate(-45deg);
+  }
+}
+.audio-icon {
+  position: absolute;
+  width: 2em;
+  height: 2em;
+  bottom: 2em;
+  left: 2em;
+  z-index: 1000;
+  opacity: 0.75;
+  // background-color: red;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  img {
+    width: 100%;
+    height: auto;
+  }
+  &.off {
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      height: 100%;
+      width: 2px;
+      background-color: darkred;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform-origin: center;
+      transform: translateX(-50%) rotate(-45deg);
+    }
+    &::after {
+      transform: translateX(-50%) rotate(45deg);
+    }
+  }
+}
+.about__img {
+  @include to(l) {
+    margin-top: 8em !important;
+  }
+}
+.Cocktails {
+  .contact-grid {
+    display: block;
+  }
+  .sidebar {
+    display: none;
+  }
+}
+
+.slogan__text {
+  @include to(l) {
+    margin-bottom: 70px !important;
+    font-size: 17px;
+  }
+}
+.Cocktails-mobile{
+  padding-top: 1.5em;
+}
+.cocktail-mobile{
+  margin-bottom: 2em;
+  &:last-child, &:last-of-type{
+    margin-bottom: 0;
+    padding-bottom: 2em;
+  }
+  .img{
+    width: 80% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+
+  }
+  .cocktail-name-mobile{
+    margin-top: .75em;
+    color: var(--color-main);
+    text-align: center;
+  }
+}
+.receta-mobile{
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+  padding: 0 1em 0 0;
+  text-align: center;
+}
+.video-mobile{
+ height: 100vh;
+ background: #000;
+//  overflow: hidden;
+ position: relative;
+ video{
+   height: 100vh;
+   width: 150%;
+   display: block;
+   position: absolute;
+   top: 0;
+   left: -25%;
+   z-index: 1;
+ }
+ button{
+   position: absolute;
+   bottom: 3em;
+   left: 50%;
+   width: 50%;
+   height: 3em;
+   background-color: lime;
+   z-index: 100;
+   transform:translateX(-50%)
+ }
+}
+.text-con{
+  z-index: 100;
+  display: block;
+  @include to(l) {
+    width: 100% !important;
+    left:50% !important;
+    right: unset !important;
+    transform: translateX(-50%);
+    opacity: .7 !important;
+    bottom: 8em !important;
+  }
+  h1{
+    @include to(l) {
+      display: block;
+      text-align: center;
+      font-size: 1em !important;
+      width: 100vw !important;
+    }
+  }
+}
+.article-text.home__text{
+  @include to(l) {
+    margin-top: 70px !important;
+  }
+}
+#instagram-posts{
+  width: 90%;
+  max-width: 800px !important;
+  margin: 0 auto;
+  height: 1087px;
+  // margin-top: -40px;
+  // transform: translateY(-12%) !important;
+  @include to(l) {
+    padding-top: 5vh;
+    height: 100vh;
+    // height: auto;
+  }
+  @include from(l){
+    // height: 70vh;
+    transform-origin: center;
+    // transform: translateY(-15%);
+  }
+  iframe{
+    border: none;
+    height: 100%;
+  }
+}
+.link-page--item p{
+  text-align: right !important;
+}
+.cc{
+  @include to(l) {
+    align-items: flex-start !important;
+  }
+}
+.cf{
+  @include to(l) {
+    padding-top: 0 !important;
+  }
+}
+.img-curamia{
+  width: 100px !important;
+  margin: 0 auto 70px;
+}
+.Tequilas__notes .img1{
+  @include from(l){
+    img{
+      height: 200px !important;
+      width: auto !important;
+    }
+  }
+}
+.map {
+  @include from(l){
+    width: 100%;
+    height: 60vh;
+    position: absolute;
+    top: -10vh;
+    margin-top: 20px;
+  }
+}
+.btn-next{
+  position: absolute;
+  width: auto;
+  height: auto;
+  top: 0em;
+  right:2em;
+  z-index: 100;
+  cursor: pointer;
+  color: #fff;
+  background-color: var(--color-main);
+}
+.main-header.fixed svg {
+  fill: #fff;
+}
+.article-text.home__text p{
+  @include to(l) {
+  font-size: 18px !important;
+  }
+}
+.link{
+  @include to(l) {
+    colo: red !important;
+  }
+
+}

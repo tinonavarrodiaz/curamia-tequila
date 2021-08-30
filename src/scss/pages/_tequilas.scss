@@ -1,0 +1,166 @@
+.Tequilas{
+  .banner-top{
+    height: 75vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include from(l) {
+      height: 85vh;
+    }
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    &::after{
+      content: "";
+      position: absolute;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(#000,.5)
+    }
+    h1{
+      position: absolute;
+      width: 100%;
+      height: auto;
+      color: #fff !important;
+      transform: translate(-50%);
+      text-align: center;
+      z-index: 20;
+      font-size: 1.3em;
+      letter-spacing:10px;
+      padding: 0 1em;
+      @include from(l) {
+        max-width: 800px;
+        font-size: 2.5em;
+      }
+    }
+  }
+}
+.Tequilas{
+  --margin : 75px;
+  @include from(l) {
+    --margin : 15vh;
+  }
+  &__henm,
+  &__logo {
+    max-width: 6.14vw;
+    margin: var(--margin) auto calc(var(--margin) * 1.50);
+    @include to(l){
+      max-width: 50px;
+    }
+  }
+  &__cml {
+    max-width: 22vw;
+    margin-bottom: var(--margin);
+    margin-left: auto ;
+    margin-right: auto ;
+    @include to(l) {
+      max-width: 170px;
+    }
+  }
+  &__separator{
+    margin-bottom: var(--margin);
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.Tequilas__description{
+  --height: auto;
+  height: var(--height);
+  padding: 0 20vh;
+  position: relative;
+  display: grid;
+  grid-template-columns: 25% 1fr;
+  @include to(l) {
+    display: block;
+    padding: 0 1em;
+  }
+}
+
+.Tequilas__bottle-container{
+  height: var(--height);
+  img{
+    width: auto;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    // display: none;
+    @include to(l) {
+      height: 300px;
+    }
+  }
+}
+.Tequilas__notes{
+  position: relative;
+  padding-top: 8%;
+  padding-bottom: 5%;
+  // display: grid;
+  grid-template-rows: repeat(3,auto);
+  height: var(--height);
+  img{
+    width: auto;
+    height: 100%;
+  }
+  @include to(l) {
+    display: block;
+    width: 100% !important;
+    margin-top: 2em;
+  }
+  
+}
+.buynow{
+  // align-self: flex-start;
+  width:150px !important;
+  height: auto !important;
+  margin-left: 7.5vw;
+  margin-top: 30px;
+  position: relative;
+  // top: -1em;
+  @include to(l) {
+    width: 75px !important;
+    margin-left: auto !important;
+    margin-right: auto;
+  }
+}
+.img1{
+  width: auto !important;
+  height: 38%;
+  margin-bottom: 1em !important;
+  @include to(l) {
+    width: 100% !important;
+    height: auto !important;
+
+  }
+  img{
+    @include to(l) {
+      width: 100% !important;
+      height: auto !important;
+
+    }
+  }
+  &:last-child{
+    margin-bottom: 0 !important;
+  }
+}
+.Tequilas__mark {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: calc(300px - 1em) !important;
+  height: calc(300px - 1em) !important;
+  z-index: -1;
+  @include from(1400px){
+    width: calc(400px - 1em)  !important;
+    height: calc(400px - 1em)  !important;
+    
+  }
+  @include to(l) {
+    width: 130px !important;
+    height: 130px!important;
+
+  }
+}
