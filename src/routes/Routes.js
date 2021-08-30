@@ -24,7 +24,7 @@ import Contact from "../pages/Contact";
 function Routes() {
   return (
     // <Router> 
-    <Router basename="/tequilacuramia">
+    <Router basename="/curamia-tequila">
       <Switch>
         <Route exact path="/" >
           <Home />
